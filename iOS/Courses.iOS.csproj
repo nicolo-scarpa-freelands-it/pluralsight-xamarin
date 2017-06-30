@@ -116,6 +116,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\ps_top_card_01.png" />
     <BundleResource Include="Resources\ps_top_card_02.png" />
+    <BundleResource Include="Resources\ps_top_card_04.png" />
+    <BundleResource Include="Resources\ps_top_card_03.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

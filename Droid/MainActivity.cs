@@ -56,7 +56,7 @@ namespace Courses.Droid
         private void UpdateUI() {
             textTitle.Text = courseManager.Current.Title;
             textDescription.Text = courseManager.Current.Description;
-			imageCourse.SetImageResource(Resource.Drawable.ps_top_card_01);
+            imageCourse.SetImageResource(ResourceHelper.TranslateDrawableWithReflection(courseManager.Current.Image));
 
             buttonPrev.Enabled = courseManager.CanMovePrev;
             buttonNext.Enabled = courseManager.CanMoveNext;

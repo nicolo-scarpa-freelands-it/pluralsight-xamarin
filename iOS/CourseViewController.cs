@@ -51,7 +51,7 @@ namespace Courses.iOS
 		{
 			labelTitle.Text = courseManager.Current.Title;
 			textDescription.Text = courseManager.Current.Description;
-			imageCourse.Image = UIImage.FromBundle("ps_top_card_01");
+            imageCourse.Image = UIImage.FromBundle(courseManager.Current.Image);
 
             buttonPrev.Enabled = courseManager.CanMovePrev;
             buttonNext.Enabled = courseManager.CanMoveNext;
