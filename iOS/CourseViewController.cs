@@ -6,6 +6,8 @@ namespace Courses.iOS
 {
     public partial class CourseViewController : UIViewController
     {
+        CourseManager courseManager;
+
 		public CourseViewController(IntPtr handle) : base(handle)
         {
 		}
@@ -18,6 +20,11 @@ namespace Courses.iOS
             // Add event handlers
             buttonPrev.TouchUpInside += ButtonPrev_TouchUpInside;
             buttonNext.TouchUpInside += ButtonNext_TouchUpInside;
+
+			courseManager = new CourseManager();
+			courseManager.MoveFirst();
+
+            UpdateUI();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -28,17 +35,27 @@ namespace Courses.iOS
 
         void ButtonPrev_TouchUpInside(object sender, EventArgs e)
         {
-            imageCourse.Image = UIImage.FromBundle("ps_top_card_01");
-            labelTitle.Text = "Prev clicked";
-            textDescription.Text = "This is the description that displays when Prev is clicked";
+            courseManager.MovePrev();
+
+            UpdateUI();
         }
 
         void ButtonNext_TouchUpInside(object sender, EventArgs e)
         {
-            imageCourse.Image = UIImage.FromBundle("ps_top_card_02");
-            labelTitle.Text = "Next clicked";
-            textDescription.Text = "This is the description that displays when Next is clicked";
+            courseManager.MoveNext();
+
+            UpdateUI();
         }
+
+		private void UpdateUI()
+		{
+			labelTitle.Text = courseManager.Current.Title;
+			textDescription.Text = courseManager.Current.Description;
+			imageCourse.Image = UIImage.FromBundle("ps_top_card_01");
+
+            buttonPrev.Enabled = courseManager.CanMovePrev;
+            buttonNext.Enabled = courseManager.CanMoveNext;
+		}
     }
 }
 

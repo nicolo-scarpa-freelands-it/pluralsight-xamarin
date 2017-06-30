@@ -13,6 +13,8 @@ namespace Courses.Droid
         ImageView imageCourse;
         TextView textDescription;
 
+        CourseManager courseManager;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,21 +32,34 @@ namespace Courses.Droid
             // Add delegates to UI controls
             buttonPrev.Click += ButtonPrev_Click;
             buttonNext.Click += ButtonNext_Click;
+
+            courseManager = new CourseManager();
+            courseManager.MoveFirst();
+
+            UpdateUI();
         }
 
         void ButtonPrev_Click(object sender, System.EventArgs e)
         {
-            textTitle.Text = "Prev Clicked";
-            textDescription.Text = "The description that appears when Prev is clicked";
-            imageCourse.SetImageResource(Resource.Drawable.ps_top_card_01);
+            courseManager.MovePrev();
+
+            UpdateUI();
         }
 
         void ButtonNext_Click(object sender, System.EventArgs e)
         {
-            textTitle.Text = "Next Clicked";
-            textDescription.Text = "The description that appears when Next is clicked";
-            imageCourse.SetImageResource(Resource.Drawable.ps_top_card_02);
+            courseManager.MoveNext();
+
+            UpdateUI();
+        }
+
+        private void UpdateUI() {
+            textTitle.Text = courseManager.Current.Title;
+            textDescription.Text = courseManager.Current.Description;
+			imageCourse.SetImageResource(Resource.Drawable.ps_top_card_01);
+
+            buttonPrev.Enabled = courseManager.CanMovePrev;
+            buttonNext.Enabled = courseManager.CanMoveNext;
         }
     }
 }
-
