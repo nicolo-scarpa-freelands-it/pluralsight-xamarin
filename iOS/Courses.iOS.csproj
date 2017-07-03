@@ -93,6 +93,14 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_01.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_01.imageset\ps_top_card_01.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_02.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_02.imageset\ps_top_card_02.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_03.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_03.imageset\ps_top_card_03.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_04.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\ps_top_card_04.imageset\ps_top_card_04.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -116,12 +124,6 @@
     <Compile Include="CoursePagerViewController.designer.cs">
       <DependentUpon>CoursePagerViewController.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ps_top_card_01.png" />
-    <BundleResource Include="Resources\ps_top_card_02.png" />
-    <BundleResource Include="Resources\ps_top_card_04.png" />
-    <BundleResource Include="Resources\ps_top_card_03.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

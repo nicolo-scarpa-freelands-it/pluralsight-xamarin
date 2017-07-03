@@ -89,9 +89,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ps_top_card_01.png" width="376" height="365"/>
-        <image name="ps_top_card_02.png" width="376" height="365"/>
-        <image name="ps_top_card_04.png" width="376" height="365"/>
-        <image name="ps_top_card_03.png" width="376" height="365"/>
+        <image name="ps_top_card_01" width="376" height="365"/>
+        <image name="ps_top_card_02" width="376" height="365"/>
+        <image name="ps_top_card_03" width="376" height="365"/>
+        <image name="ps_top_card_04" width="376" height="365"/>
     </resources>
 </document>
