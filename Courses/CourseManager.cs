@@ -51,6 +51,11 @@ namespace Courses
             return initCourses;
         }
 
+        public int Length
+        {
+            get { return courses.Length; }
+        }
+
         // Cursor-like behavior
         public void MoveFirst() {
             currentIndex = 0;
@@ -65,6 +70,15 @@ namespace Courses
         public void MoveNext() {
             if (CanMoveNext) {
                 ++currentIndex;
+            }
+        }
+
+        public void MoveTo(int position)
+        {
+            if (position >= 0 && position <= lastIndex) {
+                currentIndex = position;   
+            } else {
+                throw new IndexOutOfRangeException(String.Format("{0} is an invalid position. Must be between 0 and {1}", position, lastIndex));
             }
         }
 
