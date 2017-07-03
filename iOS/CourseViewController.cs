@@ -6,23 +6,17 @@ namespace Courses.iOS
 {
     public partial class CourseViewController : UIViewController
     {
-        CourseManager courseManager;
+        public Course Course { get; set; }
+        public int CoursePosition { get; set; } // TODO: this doesn't convince me here (maybe put it in the pager view controller?)
 
-		public CourseViewController(IntPtr handle) : base(handle)
+        public CourseViewController(IntPtr handle) : base(handle)
         {
-		}
+        }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-
-            // Add event handlers
-            buttonPrev.TouchUpInside += ButtonPrev_TouchUpInside;
-            buttonNext.TouchUpInside += ButtonNext_TouchUpInside;
-
-			courseManager = new CourseManager();
-			courseManager.MoveFirst();
 
             UpdateUI();
         }
@@ -33,29 +27,12 @@ namespace Courses.iOS
             // Release any cached data, images, etc that aren't in use.
         }
 
-        void ButtonPrev_TouchUpInside(object sender, EventArgs e)
+        private void UpdateUI()
         {
-            courseManager.MovePrev();
-
-            UpdateUI();
+            labelTitle.Text = Course.Title;
+            textDescription.Text = Course.Description;
+            imageCourse.Image = UIImage.FromBundle(Course.Image);
         }
-
-        void ButtonNext_TouchUpInside(object sender, EventArgs e)
-        {
-            courseManager.MoveNext();
-
-            UpdateUI();
-        }
-
-		private void UpdateUI()
-		{
-			labelTitle.Text = courseManager.Current.Title;
-			textDescription.Text = courseManager.Current.Description;
-            imageCourse.Image = UIImage.FromBundle(courseManager.Current.Image);
-
-            buttonPrev.Enabled = courseManager.CanMovePrev;
-            buttonNext.Enabled = courseManager.CanMoveNext;
-		}
     }
 }
 

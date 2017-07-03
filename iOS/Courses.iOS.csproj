@@ -112,6 +112,10 @@
     <Compile Include="CourseViewController.designer.cs">
       <DependentUpon>CourseViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoursePagerViewController.cs" />
+    <Compile Include="CoursePagerViewController.designer.cs">
+      <DependentUpon>CoursePagerViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ps_top_card_01.png" />

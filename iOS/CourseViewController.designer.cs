@@ -13,12 +13,6 @@ namespace Courses.iOS
 	partial class CourseViewController
 	{
 		[Outlet]
-		UIKit.UIButton buttonNext { get; set; }
-
-		[Outlet]
-		UIKit.UIButton buttonPrev { get; set; }
-
-		[Outlet]
 		UIKit.UIImageView imageCourse { get; set; }
 
 		[Outlet]
@@ -29,24 +23,14 @@ namespace Courses.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (buttonNext != null) {
-				buttonNext.Dispose ();
-				buttonNext = null;
-			}
-
-			if (buttonPrev != null) {
-				buttonPrev.Dispose ();
-				buttonPrev = null;
+			if (imageCourse != null) {
+				imageCourse.Dispose ();
+				imageCourse = null;
 			}
 
 			if (labelTitle != null) {
 				labelTitle.Dispose ();
 				labelTitle = null;
-			}
-
-			if (imageCourse != null) {
-				imageCourse.Dispose ();
-				imageCourse = null;
 			}
 
 			if (textDescription != null) {
