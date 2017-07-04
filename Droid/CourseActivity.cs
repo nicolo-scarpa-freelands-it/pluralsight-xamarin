@@ -1,55 +1,71 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
-using Android.Views;
+using Android.Support.V4.Widget;
 using Android.Widget;
 
 namespace Courses.Droid
 {
-    [Activity(Label = "Courses")]
+    [Activity(Label = "Courses", MainLauncher = true, Icon = "@mipmap/icon")]
     public class CourseActivity : FragmentActivity
     {
-        public const String DISPLAY_CATEGORY_TITLE_EXTRA = "DisplayCategoryTitleExtra";
         private const String DEFAULT_CATEGORY_TITLE = "Android";
 
-        CourseManager courseManager;
+        CourseCategoryManager courseCategoryManager;
+
         CoursePagerAdapter coursePagerAdapter;
         ViewPager coursePager;
+
+        DrawerLayout drawerLayout;
+        ListView categoryDrawerListView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.CourseActivity);
+			SetContentView(Resource.Layout.CourseActivity);
 
-            String categoryTitle = DEFAULT_CATEGORY_TITLE;
+            // Drawer Layout
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
 
-            Intent startupIntent = this.Intent;
-            if (startupIntent != null) 
-            {
-                String displayCategoryTitleExtra = startupIntent.GetStringExtra(DISPLAY_CATEGORY_TITLE_EXTRA);
-                if (displayCategoryTitleExtra != null) 
-                {
-                    categoryTitle = displayCategoryTitleExtra;
-                }
-            }
+            // Drawer Category ListView
+			categoryDrawerListView = FindViewById<ListView>(Resource.Id.categoryDrawerListView);
 
-            courseManager = new CourseManager(categoryTitle);
-            courseManager.MoveFirst();
+			courseCategoryManager = new CourseCategoryManager();
+			courseCategoryManager.MoveFirst();
+
+            categoryDrawerListView.Adapter = new CourseCategoryListAdapter(this, Resource.Layout.CourseCategoryItem, courseCategoryManager);
+
+            categoryDrawerListView.SetItemChecked(0, true);
+            categoryDrawerListView.ItemClick += CategoryDrawerListView_ItemClick;
+
+            // Setup Course View
+            String categoryTitle = courseCategoryManager.Current.Title;
+
+            CourseManager courseManager = new CourseManager(categoryTitle);
 
             coursePagerAdapter = new CoursePagerAdapter(SupportFragmentManager, courseManager);
 
             coursePager = FindViewById<ViewPager>(Resource.Id.coursePager);
             coursePager.Adapter = coursePagerAdapter;
+        }
+
+        void CategoryDrawerListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            courseCategoryManager.MoveTo(e.Position);
+
+            String categoryTitle = courseCategoryManager.Current.Title;
+            CourseManager courseManager = new CourseManager(categoryTitle);
+
+            coursePagerAdapter.CourseManager = courseManager;
+
+            coursePager.CurrentItem = 0;
+
+            drawerLayout.CloseDrawer(categoryDrawerListView);
         }
     }
 }

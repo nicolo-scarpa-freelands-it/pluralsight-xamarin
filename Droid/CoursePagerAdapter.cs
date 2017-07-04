@@ -23,5 +23,21 @@ namespace Courses.Droid
 
             return courseFragment;
         }
+
+        public CourseManager CourseManager
+        {
+            set
+            {
+                courseManager = value;
+
+                // This is used to notify the base class that the Fragments needs to be recreated beacus data has changed
+                NotifyDataSetChanged();
+            }
+        }
+
+        public override int GetItemPosition(Java.Lang.Object objectValue)
+        {
+            return PositionNone; // no matter which one it tries to reuse don't reuse that one, which causes the GetItem to be triggered and create a new fragment
+        }
     }
 }

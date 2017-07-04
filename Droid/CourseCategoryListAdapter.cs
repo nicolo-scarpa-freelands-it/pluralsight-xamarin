@@ -5,13 +5,13 @@ using Android.Widget;
 
 namespace Courses.Droid
 {
-	public class CourseCategoryManagerAdapter : BaseAdapter<CourseCategory>
+	public class CourseCategoryListAdapter : BaseAdapter<CourseCategory>
 	{
 		Context context;
 		int layoutResourceId;
 		CourseCategoryManager courseCategoryManager;
 
-		public CourseCategoryManagerAdapter(Context context, int layoutResourceId, CourseCategoryManager courseCategoryManager)
+		public CourseCategoryListAdapter(Context context, int layoutResourceId, CourseCategoryManager courseCategoryManager)
 		{
 			this.context = context;
 			this.layoutResourceId = layoutResourceId;

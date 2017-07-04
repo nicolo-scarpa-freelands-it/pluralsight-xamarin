@@ -62,8 +62,7 @@
     <Compile Include="CourseFragment.cs" />
     <Compile Include="CoursePagerAdapter.cs" />
     <Compile Include="CourseActivity.cs" />
-    <Compile Include="CategoryActivity.cs" />
-    <Compile Include="CourseCategoryManagerAdapter.cs" />
+    <Compile Include="CourseCategoryListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -84,6 +83,7 @@
     <AndroidResource Include="Resources\drawable\ps_top_card_03.png" />
     <AndroidResource Include="Resources\layout\CourseFragment.axml" />
     <AndroidResource Include="Resources\layout\CourseActivity.axml" />
+    <AndroidResource Include="Resources\layout\CourseCategoryItem.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
