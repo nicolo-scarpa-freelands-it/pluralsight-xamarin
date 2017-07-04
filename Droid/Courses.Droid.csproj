@@ -62,6 +62,8 @@
     <Compile Include="CourseFragment.cs" />
     <Compile Include="CoursePagerAdapter.cs" />
     <Compile Include="CourseActivity.cs" />
+    <Compile Include="CategoryActivity.cs" />
+    <Compile Include="CourseCategoryManagerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -15,9 +15,12 @@ using Android.Widget;
 
 namespace Courses.Droid
 {
-    [Activity(Label = "Courses", MainLauncher = true, Icon = "@mipmap/icon")]
+    [Activity(Label = "Courses")]
     public class CourseActivity : FragmentActivity
     {
+        public const String DISPLAY_CATEGORY_TITLE_EXTRA = "DisplayCategoryTitleExtra";
+        private const String DEFAULT_CATEGORY_TITLE = "Android";
+
         CourseManager courseManager;
         CoursePagerAdapter coursePagerAdapter;
         ViewPager coursePager;
@@ -26,10 +29,21 @@ namespace Courses.Droid
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
             SetContentView(Resource.Layout.CourseActivity);
 
-            courseManager = new CourseManager();
+            String categoryTitle = DEFAULT_CATEGORY_TITLE;
+
+            Intent startupIntent = this.Intent;
+            if (startupIntent != null) 
+            {
+                String displayCategoryTitleExtra = startupIntent.GetStringExtra(DISPLAY_CATEGORY_TITLE_EXTRA);
+                if (displayCategoryTitleExtra != null) 
+                {
+                    categoryTitle = displayCategoryTitleExtra;
+                }
+            }
+
+            courseManager = new CourseManager(categoryTitle);
             courseManager.MoveFirst();
 
             coursePagerAdapter = new CoursePagerAdapter(SupportFragmentManager, courseManager);
