@@ -9,10 +9,10 @@ namespace Courses.iOS
         UIPageViewController pageViewController;
         CoursePagerViewControllerDataSource pageViewControllerDataSource;
 
-        public CoursePagerViewController(IntPtr handle) : base(handle)
+        public CoursePagerViewController(String categoryTitle)
         {
-			CourseManager courseManager = new CourseManager();
-			pageViewControllerDataSource = new CoursePagerViewControllerDataSource(Storyboard, courseManager);
+            CourseManager courseManager = new CourseManager(categoryTitle);
+			pageViewControllerDataSource = new CoursePagerViewControllerDataSource(courseManager);
         }
 
         public override void ViewDidLoad()

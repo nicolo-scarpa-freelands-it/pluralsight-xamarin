@@ -5,12 +5,10 @@ namespace Courses.iOS
 {
     public class CoursePagerViewControllerDataSource : UIPageViewControllerDataSource
 	{
-		UIStoryboard storyboard;
 		CourseManager courseManager;
 
-		public CoursePagerViewControllerDataSource(UIStoryboard storyboard, CourseManager courseManager)
+		public CoursePagerViewControllerDataSource(CourseManager courseManager)
 		{
-			this.storyboard = storyboard;
 			this.courseManager = courseManager;
 		}
 
@@ -22,6 +20,7 @@ namespace Courses.iOS
 
 		private CourseViewController CreateCourseViewController()
 		{
+            UIStoryboard storyboard = UIStoryboard.FromName("Main", null);
 			CourseViewController courseViewController = (CourseViewController)storyboard.InstantiateViewController("CourseViewController");
 
 			courseViewController.Course = courseManager.Current;

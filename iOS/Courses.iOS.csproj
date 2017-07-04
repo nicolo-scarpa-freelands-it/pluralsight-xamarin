@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -116,15 +115,27 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="CourseViewController.cs" />
     <Compile Include="CourseViewController.designer.cs">
       <DependentUpon>CourseViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="CoursePagerViewController.cs" />
+    <Compile Include="CourseViewController.cs" />
     <Compile Include="CoursePagerViewController.designer.cs">
       <DependentUpon>CoursePagerViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="CoursePagerViewControllerDataSource.cs" />
+    <Compile Include="RootNavigationController.cs" />
+    <Compile Include="CategoryTableViewController.cs" />
+    <Compile Include="CategoryTableViewController.designer.cs">
+      <DependentUpon>CategoryTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryTableViewSource.cs" />
+    <Compile Include="RootNavigationController.designer.cs">
+      <DependentUpon>RootNavigationController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\.DS_Store" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
