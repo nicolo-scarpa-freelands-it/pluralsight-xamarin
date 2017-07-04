@@ -124,6 +124,7 @@
     <Compile Include="CoursePagerViewController.designer.cs">
       <DependentUpon>CoursePagerViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoursePagerViewControllerDataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -7,10 +7,12 @@ namespace Courses.iOS
     public partial class CoursePagerViewController : UIViewController
     {
         UIPageViewController pageViewController;
-        CourseManager courseManager;
+        CoursePagerViewControllerDataSource pageViewControllerDataSource;
 
         public CoursePagerViewController(IntPtr handle) : base(handle)
-        { 
+        {
+			CourseManager courseManager = new CourseManager();
+			pageViewControllerDataSource = new CoursePagerViewControllerDataSource(Storyboard, courseManager);
         }
 
         public override void ViewDidLoad()
@@ -23,68 +25,18 @@ namespace Courses.iOS
 
             this.View.AddSubview(pageViewController.View);
 
-            courseManager = new CourseManager();
-            courseManager.MoveFirst();
-
-            CourseViewController firstCourseViewController = CreateCourseViewController();
-
+            CourseViewController firstCourseViewController = pageViewControllerDataSource.GetFirstViewController();
             pageViewController.SetViewControllers(new UIViewController[] { firstCourseViewController }, UIPageViewControllerNavigationDirection.Forward, false, null);
-            // Set delegates methods
-            pageViewController.GetNextViewController = GetNextViewController;
-            pageViewController.GetPreviousViewController = GetPreviousViewController;
+            // Assign the delegate instance of CoursePagerViewControllerDataSource which extends UIPageViewControllerDataSource abstract class
+            // Objective-C protocols are implemented in C# as Abstract Classes
+			pageViewController.DataSource = pageViewControllerDataSource;
+
         }
 
         public override void DidReceiveMemoryWarning()
         {
             base.DidReceiveMemoryWarning();
             // Release any cached data, images, etc that aren't in use.
-        }
-
-        CourseViewController CreateCourseViewController() 
-        {
-            CourseViewController courseViewController = (CourseViewController)Storyboard.InstantiateViewController("CourseViewController");
-
-            courseViewController.Course = courseManager.Current;
-            courseViewController.CoursePosition = courseManager.CurrentPosition;
-
-            return courseViewController;
-        }
-
-        // Delegates
-        public UIViewController GetNextViewController(UIPageViewController pageViewController, UIViewController currentlyDisplayedViewController)
-        {
-            CourseViewController nextViewController = null;
-
-            CourseViewController currentlyDisplayedCourseViewController = currentlyDisplayedViewController as CourseViewController;
-            if (currentlyDisplayedCourseViewController != null) 
-            {
-                courseManager.MoveTo(currentlyDisplayedCourseViewController.CoursePosition);
-                if (courseManager.CanMoveNext) 
-                {
-                    courseManager.MoveNext();
-                    nextViewController = CreateCourseViewController();
-                }
-            }
-
-            return nextViewController;
-        }
-
-        public UIViewController GetPreviousViewController(UIPageViewController pageViewController, UIViewController currentlyDisplayedViewController)
-        {
-            CourseViewController previousViewController = null;
-
-			CourseViewController currentlyDisplayedCourseViewController = currentlyDisplayedViewController as CourseViewController;
-			if (currentlyDisplayedCourseViewController != null)
-			{
-                courseManager.MoveTo(currentlyDisplayedCourseViewController.CoursePosition);
-                if (courseManager.CanMovePrev)
-				{
-                    courseManager.MovePrev();
-                    previousViewController = CreateCourseViewController();
-				}
-			}
-
-			return previousViewController;
         }
     }
 }
